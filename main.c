@@ -1,4 +1,8 @@
+#include <time.h>
 #include <stdio.h>
+#include <stdlib.h>
+
+int random_int();
 
 enum Combinations {
     ONES,
@@ -37,3 +41,12 @@ int main(){
     while ( Game.turn_number < turns ){
         take_turn();
     }
+}
+
+
+int random_int()
+{
+    srand(time(NULL));
+    int rndm = rand() % (6 + 1);
+    return rndm;
+}

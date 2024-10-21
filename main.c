@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 enum Combinations {
     ONES,
     TWOS,
@@ -28,9 +30,10 @@ struct gamestate{
 void take_turn();
 
 int main(){
+    // Dice data structure
+    int dice[5] = {1, 1, 1, 1, 1};
     struct gamestate Game;
     int turns = 13;
     while ( Game.turn_number < turns ){
         take_turn();
-    } 
-}
+    }

@@ -1,5 +1,23 @@
+enum Combinations {
+    ONES,
+    TWOS,
+    THREES,
+    FOURS,
+    FIVES,
+    SIXES,
+    PAIRS,
+    DOUBLE_PAIR,
+    TRIPLES,
+    QUADRUPLETS,
+    SMALL_LADDER,
+    BIG_LADDER,
+    FULL_HOUSE,
+    CHANCE,
+    YAHTZEE
+};
+
 struct scorecard{
-    int card[2][15];
+    int category[2][15];
 };
 
 struct gamestate{
@@ -7,6 +25,12 @@ struct gamestate{
     struct scorecard player;
 };
 
-int main(){
+void take_turn();
 
+int main(){
+    struct gamestate Game;
+    int turns = 13;
+    while ( Game.turn_number < turns ){
+        take_turn();
+    } 
 }

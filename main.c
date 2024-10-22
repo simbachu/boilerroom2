@@ -1,8 +1,12 @@
-#include <time.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdbool.h>
+#define NUM_OF_DICE 5
 
-int random_int();
+typedef struct dice
+{
+    bool hold[NUM_OF_DICE];
+    int value[NUM_OF_DICE];
+}Dice;
 
 enum Combinations {
     ONES,
@@ -31,18 +35,21 @@ struct gamestate{
     struct scorecard player;
 };
 
+int random_int();
+
 void take_turn();
 
-int main(){
-    // Dice data structure
-    int dice[5] = {1, 1, 1, 1, 1};
+int main()
+{
+    Dice main_dice;
+
     struct gamestate Game;
     int turns = 13;
-    while ( Game.turn_number < turns ){
+    while ( Game.turn_number < turns )
+    {
         take_turn();
     }
 }
-
 
 int random_int()
 {

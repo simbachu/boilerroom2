@@ -39,7 +39,7 @@ struct gamestate{
 void turn_the_dice(int roll_no, Dice* d);
 void reset_dice_hold(Dice* d);
 void input_dice_hold(Dice* d);
-
+void dice_hold_update(Dice* d, bool dest);
 int main()
 {
     Dice main_dice;
@@ -52,7 +52,7 @@ int main()
         while (dice_roll < 3)
         {
             turn_the_dice(dice_roll, &main_dice);
-            printf("Hold 1: %d ", main_dice.hold[0]);
+            printf("Roll number %d, Held dice: %d %d %d %d %d \n", dice_roll+1, main_dice.hold[0], main_dice.hold[1], main_dice.hold[2], main_dice.hold[3], main_dice.hold[4]);
             dice_roll++;
         }
                     exit(0);
@@ -62,8 +62,7 @@ int main()
 void turn_the_dice(int roll_no, Dice* d)
 {
     if (roll_no == 0) reset_dice_hold(d);
-
-    input_dice_hold(d);
+    else input_dice_hold(d);
 }
 
 void reset_dice_hold(Dice* d)
@@ -72,24 +71,36 @@ void reset_dice_hold(Dice* d)
     {
         d->hold[i] = false;
     }
+    printf("reset_dice_hold()\n");
 }
 
 void input_dice_hold(Dice* d)
 {
-    bool hasHold;
-    int input;
+    int held_dice = 0;
     for (int i = 0; i < NUM_OF_DICE; i++)
     {
-        if (d->hold[i]) hasHold = true; 
+        if (d->hold[i]) held_dice++; 
     }
-    if (!hasHold) printf("Do you want to hold any dice? --> ");
-    else
+    if (held_dice > 0)
     {
-        printf("You currently hold \n");
-        printf("Do you want to hold any more dice? --> ");
-    }
+        printf("You currently hold dice ");
+        for (int i = 0; i < NUM_OF_DICE ; i++) 
+        {
+            if (d->hold[i] == true) printf("%d ", i+1);
+        }
+        printf("\nEnter any dice you want roll again --> ");
+        dice_hold_update(d, false);       
+    } 
+    printf("Enter any dice you want to hold --> ");
+    dice_hold_update(d, true);
+    
 
-    char line[11];
+}
+
+void dice_hold_update(Dice* d, bool dest)
+{
+    char line[11] = "";
+    int input;
     char* endp;
     fgets(line, 10, stdin);
 
@@ -98,9 +109,7 @@ void input_dice_hold(Dice* d)
         input = line[i] - 48;
         if (input > 0 && input < NUM_OF_DICE)
         {
-        printf("Input %d ", input);
-        d->hold[input-1] = true;
+        d->hold[input-1] = dest;
         }
     }
-
 }

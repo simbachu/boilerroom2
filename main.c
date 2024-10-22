@@ -27,16 +27,16 @@ enum Combinations {
     YAHTZEE
 };
 
-struct scorecard{
+typedef struct scorecard{
     int category[15];
-};
+}Scorecard;
 
-struct gamestate{
+typedef struct gamestate{
     int turn_number;
-    struct scorecard player;
-};
+    Scorecard player;
+}Gamestate;
 
-void initialize_game(struct gamestate* g, int categories);
+void initialize_game(Gamestate* g, int categories);
 int roll_a_dice();
 void turn_the_dice(int roll_no, Dice* d);
 void reset_dice_hold(Dice* d);
@@ -48,7 +48,7 @@ int main()
 {
     Dice main_dice;
 
-    struct gamestate Game;
+    Gamestate Game;
     int turns = 15;
     initialize_game(&Game, turns);
 
@@ -67,7 +67,7 @@ int main()
     }
 }
 
-void initialize_game(struct gamestate* g, int categories)
+void initialize_game(Gamestate* g, int categories)
 {
     for (int i = 0 ; i < categories ; i++)
     {
@@ -144,5 +144,5 @@ int roll_a_dice()
 
 void score_round()
 {
-    
+
 }

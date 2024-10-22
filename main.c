@@ -36,18 +36,22 @@ struct gamestate{
     struct scorecard player;
 };
 
+void initialize_game(struct gamestate* g, int categories);
 int roll_a_dice();
 void turn_the_dice(int roll_no, Dice* d);
 void reset_dice_hold(Dice* d);
 void input_dice_hold(Dice* d);
 void dice_hold_update(Dice* d, bool dest);
+void score_round();
 
 int main()
 {
     Dice main_dice;
 
     struct gamestate Game;
-    int turns = 13;
+    int turns = 15;
+    initialize_game(&Game, turns);
+
     while ( Game.turn_number < turns )
     {
        int dice_roll = 0;
@@ -58,9 +62,19 @@ int main()
             printf("Dice values: %d %d %d %d %d \n", main_dice.value[0], main_dice.value[1], main_dice.value[2], main_dice.value[3], main_dice.value[4]);
             dice_roll++;
         }
-        choose_category();
+        score_round();
                     exit(0);
     }
+}
+
+void initialize_game(struct gamestate* g, int categories)
+{
+    for (int i = 0 ; i < categories ; i++)
+    {
+        // negative value to indicate a category hasn't been chosen yet
+        g->player.category[i] = -1;
+    }
+    g->turn_number = 0;
 }
 
 void turn_the_dice(int roll_no, Dice* d)
@@ -126,4 +140,9 @@ void dice_hold_update(Dice* d, bool dest)
 int roll_a_dice()
 {
     return 6;   // this dice has been prepared
+}
+
+void score_round()
+{
+    
 }

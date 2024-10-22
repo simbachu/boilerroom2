@@ -41,6 +41,7 @@ void take_turn();
 
 int main()
 {
+    srand(time(NULL));          // seed random generator
     Dice main_dice;
 
     struct gamestate Game;
@@ -53,7 +54,6 @@ int main()
 
 int random_int()
 {
-    srand(time(NULL));
     int rndm = rand() % (6 + 1);
     return rndm;
 }

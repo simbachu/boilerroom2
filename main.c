@@ -36,10 +36,12 @@ struct gamestate{
     struct scorecard player;
 };
 
+int roll_a_dice();
 void turn_the_dice(int roll_no, Dice* d);
 void reset_dice_hold(Dice* d);
 void input_dice_hold(Dice* d);
 void dice_hold_update(Dice* d, bool dest);
+
 int main()
 {
     Dice main_dice;
@@ -53,6 +55,7 @@ int main()
         {
             turn_the_dice(dice_roll, &main_dice);
             printf("Roll number %d, Held dice: %d %d %d %d %d \n", dice_roll+1, main_dice.hold[0], main_dice.hold[1], main_dice.hold[2], main_dice.hold[3], main_dice.hold[4]);
+            printf("Dice values: %d %d %d %d %d \n", main_dice.value[0], main_dice.value[1], main_dice.value[2], main_dice.value[3], main_dice.value[4]);
             dice_roll++;
         }
                     exit(0);
@@ -63,6 +66,11 @@ void turn_the_dice(int roll_no, Dice* d)
 {
     if (roll_no == 0) reset_dice_hold(d);
     else input_dice_hold(d);
+
+    for (int i = 0 ; i < NUM_OF_DICE ; i++)
+    {
+        if (!(d->hold[i])) d->value[i] = roll_a_dice();
+    }
 }
 
 void reset_dice_hold(Dice* d)
@@ -112,4 +120,9 @@ void dice_hold_update(Dice* d, bool dest)
         d->hold[input-1] = dest;
         }
     }
+}
+
+int roll_a_dice()
+{
+    return 6;   // this dice has been prepared
 }

@@ -28,7 +28,7 @@ enum Combinations {
 };
 
 struct scorecard{
-    int category[2][15];
+    int category[15];
 };
 
 struct gamestate{
@@ -58,6 +58,7 @@ int main()
             printf("Dice values: %d %d %d %d %d \n", main_dice.value[0], main_dice.value[1], main_dice.value[2], main_dice.value[3], main_dice.value[4]);
             dice_roll++;
         }
+        choose_category();
                     exit(0);
     }
 }

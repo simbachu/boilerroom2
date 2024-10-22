@@ -54,6 +54,6 @@ int main()
 
 int random_int()
 {
-    int rndm = rand() % (6 + 1);
+    int rndm = (rand() % 6) + 1;
     return rndm;
 }

@@ -35,7 +35,7 @@ struct gamestate{
     struct scorecard player;
 };
 
-int random_int();
+int roll_a_dice();
 
 void take_turn();
 
@@ -52,8 +52,7 @@ int main()
     }
 }
 
-int random_int()
+int roll_a_dice()
 {
-    int rndm = (rand() % 6) + 1;
-    return rndm;
+    return (rand() % 6) + 1;
 }

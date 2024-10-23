@@ -1,8 +1,11 @@
 #include <stdio.h>
-#include <stdbool.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#include <time.h>
+
 #define NUM_OF_DICE 5
 #define NUM_OF_CATEGORIES 15
+
 
 typedef struct dice
 {
@@ -148,9 +151,7 @@ void input_dice_hold(Dice* d)
         dice_hold_update(d, false);       
     } 
     printf("Enter any dice you want to hold --> ");
-    dice_hold_update(d, true);
-    
-
+    dice_hold_update(d, true);    
 }
 
 void dice_hold_update(Dice* d, bool dest)
@@ -173,7 +174,7 @@ void dice_hold_update(Dice* d, bool dest)
 
 int roll_a_dice()
 {
-    return 6;   // this dice has been prepared
+    return (rand() % 6) + 1;
 }
 
 void score_round()
@@ -214,6 +215,5 @@ void select_category(Gamestate* g, Dice d)
 
 int calculate_score(Dice d, int category)
 {
-
     return 100;   // actual scoring added in later feature
 }

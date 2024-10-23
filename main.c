@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
+
 #define NUM_OF_DICE 5
 
 typedef struct dice
@@ -43,7 +44,9 @@ void take_turn();
 
 int main()
 {
+
     srand(time(NULL));          // seed random generator
+
     Dice main_dice;
 
     struct gamestate Game;

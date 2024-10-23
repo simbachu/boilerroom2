@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #define NUM_OF_DICE 5
+#define NUM_OF_CATEGORIES 15
 
 typedef struct dice
 {
@@ -27,8 +28,28 @@ enum Combinations {
     YAHTZEE
 };
 
+const char categories[NUM_OF_CATEGORIES][20] = 
+{
+    "ONES",
+    "TWOS",
+    "THREES",
+    "FOURS",
+    "FIVES",
+    "SIXES",
+    "PAIRS",
+    "DOUBLE_PAIR",
+    "TRIPLES",
+    "QUADRUPLETS",
+    "SMALL_LADDER",
+    "BIG_LADDER",
+    "FULL_HOUSE",
+    "CHANCE",
+    "YAHTZEE"
+};
+
 typedef struct scorecard{
-    int category[15];
+    int score[15];
+    bool isFree[15];
 }Scorecard;
 
 typedef struct gamestate{
@@ -36,13 +57,17 @@ typedef struct gamestate{
     Scorecard player;
 }Gamestate;
 
-void initialize_game(Gamestate* g, int categories);
+void clear_input_buffer();
+void initialize_game(Gamestate* g);
 int roll_a_dice();
 void turn_the_dice(int roll_no, Dice* d);
 void reset_dice_hold(Dice* d);
 void input_dice_hold(Dice* d);
 void dice_hold_update(Dice* d, bool dest);
 void score_round();
+void print_valid_categories(Gamestate g);
+void select_category(Gamestate* g, Dice d);
+int calculate_score(Dice d, int category);
 
 int main()
 {
@@ -50,7 +75,7 @@ int main()
 
     Gamestate Game;
     int turns = 15;
-    initialize_game(&Game, turns);
+    initialize_game(&Game);
 
     while ( Game.turn_number < turns )
     {
@@ -58,21 +83,30 @@ int main()
         while (dice_roll < 3)
         {
             turn_the_dice(dice_roll, &main_dice);
-            printf("Roll number %d, Held dice: %d %d %d %d %d \n", dice_roll+1, main_dice.hold[0], main_dice.hold[1], main_dice.hold[2], main_dice.hold[3], main_dice.hold[4]);
+            // printf("Turn number %d, Roll number %d, Held dice: %d %d %d %d %d \n", Game.turn_number, dice_roll+1, main_dice.hold[0], main_dice.hold[1], main_dice.hold[2], main_dice.hold[3], main_dice.hold[4]);
             printf("Dice values: %d %d %d %d %d \n", main_dice.value[0], main_dice.value[1], main_dice.value[2], main_dice.value[3], main_dice.value[4]);
             dice_roll++;
         }
+        print_valid_categories(Game);
+        select_category(&Game, main_dice);
+        // printf("1: %d 2: %d", Game.player.score[0], Game.player.score[1]);
         score_round();
-                    exit(0);
     }
 }
 
-void initialize_game(Gamestate* g, int categories)
+void clear_input_buffer()
 {
-    for (int i = 0 ; i < categories ; i++)
+    char c;
+    while ((c=getchar()) != '\n' && c != EOF);
+    
+}
+
+void initialize_game(Gamestate* g)
+{
+    for (int i = 0 ; i < NUM_OF_CATEGORIES ; i++)
     {
-        // negative value to indicate a category hasn't been chosen yet
-        g->player.category[i] = -1;
+        g->player.score[i] = 0;
+        g->player.isFree[i] = true;
     }
     g->turn_number = 0;
 }
@@ -94,7 +128,6 @@ void reset_dice_hold(Dice* d)
     {
         d->hold[i] = false;
     }
-    printf("reset_dice_hold()\n");
 }
 
 void input_dice_hold(Dice* d)
@@ -122,6 +155,7 @@ void input_dice_hold(Dice* d)
 
 void dice_hold_update(Dice* d, bool dest)
 {
+    // clear_input_buffer();
     char line[11] = "";
     int input;
     char* endp;
@@ -145,4 +179,41 @@ int roll_a_dice()
 void score_round()
 {
 
+}
+
+void print_valid_categories(Gamestate g)
+{
+    printf("Choose one of the following categories: \n");
+    for (int i = 0 ; i < NUM_OF_CATEGORIES ; i++)
+    {
+        if (g.player.isFree[i]) printf("%i)%s ", i+1, categories[i]);
+    }
+}
+
+void select_category(Gamestate* g, Dice d)
+{
+    bool valid_choice = false;
+    int input = 0;
+    while(!valid_choice)      
+    {
+        printf("--> ");
+        scanf(" %d", &input);
+        input--;
+        clear_input_buffer();   // remove \n from stdin
+
+        if (g->player.isFree[input])
+        {
+            g->player.score[input] = calculate_score(d, input);
+            g->player.isFree[input] = false;
+            g->turn_number++;
+            valid_choice = true;
+        } 
+        else printf("Please choose a valid category\n");
+    }   
+}
+
+int calculate_score(Dice d, int category)
+{
+
+    return 100;   // actual scoring added in later feature
 }

@@ -54,15 +54,15 @@ const char categories[NUM_OF_CATEGORIES][20] =
 
 
 struct Scorecard{
-    int score;
-    bool hasValue;
+    int score{};
+    bool hasValue{false};
 };
 
 class Player{
     public:
-    int player_index;
-    std::string name;
-    std::vector<Scorecard> score;
+    int player_index{};
+    std::string name{};
+    std::vector<Scorecard> score[15];
 };
 
 
@@ -88,6 +88,8 @@ int main()
 {
     std::vector<Dice> main_dice(5);
     Player player1;
+    player1.player_index = 0;
+    std::cout << player1.player_index << "\n";
 
     // Gamestate Game;
     int turns = 15;

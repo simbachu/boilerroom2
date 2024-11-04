@@ -186,10 +186,12 @@ void score_round()
 
 void print_valid_categories(Gamestate g)
 {
-    printf("Choose one of the following categories: \n");
+    std::cout << "Choose one of the following categories: \n";
+    // printf("Choose one of the following categories: \n");
     for (int i = 0 ; i < NUM_OF_CATEGORIES ; i++)
     {
-        if (g.player.isFree[i]) printf("%i)%s ", i+1, categories[i]);
+        if (g.player.isFree[i]) std::cout << i+1 << ")" << categories[i] << " ";
+        // printf("%i)%s ", i+1, categories[i]);
     }
 }
 

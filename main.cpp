@@ -68,10 +68,14 @@ const char categories[NUM_OF_CATEGORIES][20] =
 };
 
 
-struct Dice
+class Dice
 {
-    bool hold;
-    int value;
+    public:
+    std::vector<bool> hold;
+    std::vector<int> value;
+
+    public:
+    Dice() : hold(NUM_OF_DICE, false), value(NUM_OF_DICE) { }
 };
 
 class Scorecard
@@ -98,12 +102,14 @@ class Player{
 
 int main()
 {
-    std::vector<Dice> main_dice(5);
+    Dice main_dice;
     Player player1;
     // player1.player_index = 0;
     // player1.score_categories.score[0] = 15;
+    int dice_index = 0;
     std::cout << "Player 1 ONES has value: " << player1.scorecard.hasValue[ONES] << "\n";
     std::cout << "Player 1 index: " << player1.player_index << "\n";
+    std::cout << "Dice index " << dice_index << " has value " << main_dice.value[dice_index] << "\n";
 
     // Gamestate Game;
     const int turns = NUM_OF_CATEGORIES;

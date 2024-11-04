@@ -11,8 +11,8 @@
 
 struct Dice
 {
-    std::vector<bool> hold;
-    std::vector<int> value;
+    bool hold;
+    int value;
 };
 
 enum Combinations {
@@ -22,12 +22,12 @@ enum Combinations {
     FOURS,
     FIVES,
     SIXES,
-    PAIRS,
-    DOUBLE_PAIR,
+    ONE_PAIR,
+    TWO_PAIRS,
     TRIPLES,
     QUADRUPLETS,
-    SMALL_LADDER,
-    BIG_LADDER,
+    SMALL_STRAIGHT,
+    LARGE_STRAIGHT,
     FULL_HOUSE,
     CHANCE,
     YAHTZEE
@@ -41,31 +41,39 @@ const char categories[NUM_OF_CATEGORIES][20] =
     "FOURS",
     "FIVES",
     "SIXES",
-    "PAIRS",
-    "DOUBLE_PAIR",
+    "ONE_PAIR",
+    "TWO_PAIRS",
     "TRIPLES",
     "QUADRUPLETS",
-    "SMALL_LADDER",
-    "BIG_LADDER",
+    "SMALL_STRAIGHT",
+    "LARGE_STRAIGHT",
     "FULL_HOUSE",
     "CHANCE",
     "YAHTZEE"
 };
 
-struct Scorecard{
-    int score[15];
-    bool hasValue[15];
+class Player{
+    public:
+    int index;
+    std::string name;
+    Scorecard score;
 };
 
-struct Gamestate{
-    int turn_number;
-    Scorecard player;
+struct Scorecard{
+    int score;
+    bool hasValue;
 };
+
+// struct Gamestate{
+//     int turn_number;
+//     std::vector<Scorecard> player;
+// };
+
 
 void clear_input_buffer();
 void initialize_game(Gamestate* g);
 int roll_a_dice();
-void turn_the_dice(int roll_no, Dice* d);
+void turn_the_dice(int roll_no, std::vector<Dice> &d);
 void reset_dice_hold(Dice* d);
 void input_dice_hold(Dice* d);
 void dice_hold_update(Dice* d, bool dest);
@@ -76,10 +84,10 @@ int calculate_score(Dice d, int category);
 
 int main()
 {
-    std::vector<int> vec(5);
-    Dice main_dice;
+    std::vector<Dice> main_dice(5);
+    std::vector<Scorecard> player1(15);
 
-    Gamestate Game;
+    // Gamestate Game;
     int turns = 15;
     initialize_game(&Game);
 
@@ -88,10 +96,12 @@ int main()
        int dice_roll = 0;
         while (dice_roll < 3)
         {
-            turn_the_dice(dice_roll, &main_dice);
-            // printf("Turn number %d, Roll number %d, Held dice: %d %d %d %d %d \n", Game.turn_number, dice_roll+1, main_dice.hold[0], main_dice.hold[1], main_dice.hold[2], main_dice.hold[3], main_dice.hold[4]);
-            std::cout << main_dice.value[0] << " " << main_dice.value[1] << " " << main_dice.value[2] << " " << main_dice.value[3] << " " << main_dice.value[4] << "\n";
-            // printf("Dice values: %d %d %d %d %d \n", main_dice.value[0], main_dice.value[1], main_dice.value[2], main_dice.value[3], main_dice.value[4]);
+            turn_the_dice(dice_roll, main_dice);
+            std::cout << main_dice[0].value << " " 
+                      << main_dice[1].value << " " 
+                      << main_dice[2].value << " " 
+                      << main_dice[3].value << " " 
+                      << main_dice[4].value << "\n";
             dice_roll++;
         }
         print_valid_categories(Game);
@@ -118,14 +128,14 @@ void initialize_game(Gamestate* g)
     g->turn_number = 0;
 }
 
-void turn_the_dice(int roll_no, Dice* d)
+void turn_the_dice(int roll_no, std::vector<Dice> &d)
 {
     if (roll_no == 0) reset_dice_hold(d);
     else input_dice_hold(d);
 
     for (int i = 0 ; i < NUM_OF_DICE ; i++)
     {
-        if (!(d->hold[i])) d->value[i] = roll_a_dice();
+        if (!(d[i].hold)) d[i].value = roll_a_dice();
     }
 }
 

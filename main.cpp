@@ -1,17 +1,18 @@
+#include <iostream>
 #include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
+// #include <stdlib.h>
+// #include <stdbool.h>
 #include <time.h>
 
 #define NUM_OF_DICE 5
 #define NUM_OF_CATEGORIES 15
 
 
-typedef struct dice
+struct Dice
 {
     bool hold[NUM_OF_DICE];
     int value[NUM_OF_DICE];
-}Dice;
+};
 
 enum Combinations {
     ONES,
@@ -50,15 +51,15 @@ const char categories[NUM_OF_CATEGORIES][20] =
     "YAHTZEE"
 };
 
-typedef struct scorecard{
+struct Scorecard{
     int score[15];
     bool isFree[15];
-}Scorecard;
+};
 
-typedef struct gamestate{
+struct Gamestate{
     int turn_number;
     Scorecard player;
-}Gamestate;
+};
 
 void clear_input_buffer();
 void initialize_game(Gamestate* g);
@@ -87,7 +88,8 @@ int main()
         {
             turn_the_dice(dice_roll, &main_dice);
             // printf("Turn number %d, Roll number %d, Held dice: %d %d %d %d %d \n", Game.turn_number, dice_roll+1, main_dice.hold[0], main_dice.hold[1], main_dice.hold[2], main_dice.hold[3], main_dice.hold[4]);
-            printf("Dice values: %d %d %d %d %d \n", main_dice.value[0], main_dice.value[1], main_dice.value[2], main_dice.value[3], main_dice.value[4]);
+            std::cout << main_dice.value[0] << " " << main_dice.value[1] << " " << main_dice.value[2] << " " << main_dice.value[3] << " " << main_dice.value[4] << "\n";
+            // printf("Dice values: %d %d %d %d %d \n", main_dice.value[0], main_dice.value[1], main_dice.value[2], main_dice.value[3], main_dice.value[4]);
             dice_roll++;
         }
         print_valid_categories(Game);

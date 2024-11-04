@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdio.h>
+#include <vector>
 // #include <stdlib.h>
 // #include <stdbool.h>
 #include <time.h>
@@ -10,8 +11,8 @@
 
 struct Dice
 {
-    bool hold[NUM_OF_DICE];
-    int value[NUM_OF_DICE];
+    std::vector<bool> hold;
+    std::vector<int> value;
 };
 
 enum Combinations {
@@ -53,7 +54,7 @@ const char categories[NUM_OF_CATEGORIES][20] =
 
 struct Scorecard{
     int score[15];
-    bool isFree[15];
+    bool hasValue[15];
 };
 
 struct Gamestate{
@@ -75,6 +76,7 @@ int calculate_score(Dice d, int category);
 
 int main()
 {
+    std::vector<int> vec(5);
     Dice main_dice;
 
     Gamestate Game;
@@ -111,7 +113,7 @@ void initialize_game(Gamestate* g)
     for (int i = 0 ; i < NUM_OF_CATEGORIES ; i++)
     {
         g->player.score[i] = 0;
-        g->player.isFree[i] = true;
+        g->player.hasValue[i] = false;
     }
     g->turn_number = 0;
 }
@@ -190,7 +192,7 @@ void print_valid_categories(Gamestate g)
     // printf("Choose one of the following categories: \n");
     for (int i = 0 ; i < NUM_OF_CATEGORIES ; i++)
     {
-        if (g.player.isFree[i]) std::cout << i+1 << ")" << categories[i] << " ";
+        if (!g.player.hasValue[i]) std::cout << i+1 << ")" << categories[i] << " ";
         // printf("%i)%s ", i+1, categories[i]);
     }
 }
@@ -209,10 +211,10 @@ void select_category(Gamestate* g, Dice d)
         // clear_input_buffer for c, not needed for c++ ?
         // clear_input_buffer();   // remove \n from stdin
 
-        if (g->player.isFree[input])
+        if (!(g->player.hasValue[input]))
         {
             g->player.score[input] = calculate_score(d, input);
-            g->player.isFree[input] = false;
+            g->player.hasValue[input] = true;
             g->turn_number++;
             valid_choice = true;
         } 

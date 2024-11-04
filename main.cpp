@@ -199,10 +199,13 @@ void select_category(Gamestate* g, Dice d)
     int input = 0;
     while(!valid_choice)      
     {
-        printf("--> ");
-        scanf(" %d", &input);
+        std::cout << "--> ";
+        // printf("--> ");
+        std::cin >> input;
+        // scanf(" %d", &input);
         input--;
-        clear_input_buffer();   // remove \n from stdin
+        // clear_input_buffer for c, not needed for c++ ?
+        // clear_input_buffer();   // remove \n from stdin
 
         if (g->player.isFree[input])
         {
@@ -211,7 +214,11 @@ void select_category(Gamestate* g, Dice d)
             g->turn_number++;
             valid_choice = true;
         } 
-        else printf("Please choose a valid category\n");
+        else 
+        {
+            std::cout << "Please choose a valid category\n";
+            // printf("Please choose a valid category\n");
+        }
     }   
 }
 

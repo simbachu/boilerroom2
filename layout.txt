@@ -1,0 +1,108 @@
+Active:    Player 1 - Erik
+           2 rolls left
+
+          -     -     -     -     -
+        | 5 | | 5 | | 3 | | 1 | | 2 |
+          -     -     -     -     -
+
+         (1)   (2)   (3)   (4)   (5)
+Hold     |x|   |x|   | |   | |   | |   
+
+--------------------------------------
+                  | P1  | P2  |
+--------------------------------------
+  ONES            |     |     |
+  TWOS            |     |     |
+  THREES          |     |     |
+  FOURS           |     |     |
+  FIVES           |     |     |
+  SIXES           |     |     |
+--------------------------------------
+  SUM:            |     |     |
+  BONUS:          |     |     |
+--------------------------------------
+  ONE_PAIR        |     |     |
+  TWO_PAIRS       |     |     |
+  THREE_OF_A_KIND |     |     |
+  FOUR_OF_A_KIND  |     |     |
+  SMALL_STRAIGHT  |     |     |
+  LARGE_STRAIGHT  |     |     |
+  FULL_HOUSE      |     |     |
+  CHANCE          |     |     |
+  YAHTZEE         |     |     |
+--------------------------------------
+  SUM:            |     |     |
+
+  Press enter to roll dice...
+
+
+
+
+
+
+Active:    Player 2 - Sabina
+           3 rolls left
+
+          -     -     -     -     -
+        |   | |   | |   | |   | |   |
+          -     -     -     -     -
+
+
+
+
+--------------------------------------
+                  | P1  | P2  |
+--------------------------------------
+  ONES            | 3   |     |
+  TWOS            |     |     |
+  THREES          | 12  |     |
+  FOURS           |     |     |
+  FIVES           |     | 15  |
+  SIXES           |     |     |
+--------------------------------------
+  SUM:            | 15  | 15  |
+  BONUS:          |     |     |
+--------------------------------------
+  ONE_PAIR        |     |     |
+  TWO_PAIRS       |     |     |
+  THREE_OF_A_KIND |     |     |
+  FOUR_OF_A_KIND  |     |     |
+  SMALL_STRAIGHT  |     |     |
+  LARGE_STRAIGHT  |     |     |
+  FULL_HOUSE      |     |     |
+  CHANCE          |     |     |
+  YAHTZEE         |     |     |
+--------------------------------------
+  SUM:            | 15  | 15  |
+
+  Press enter to roll dice...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+extra:
+
+        Player 2
+           3 rolls left
+
+          -     -     -     -     -
+        |   | |   | |   | |   | |   |
+          -     -     -     -     -
+
+         (1)   (2)   (3)   (4)   (5)
+Hold     | |   | |   | |   | |   | |   
+
+
+

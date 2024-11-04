@@ -29,11 +29,6 @@ void clear_input_buffer();
 // int calculate_score(Dice d, int category);
 
 
-struct Dice
-{
-    bool hold;
-    int value;
-};
 
 enum Category {
     ONES,
@@ -73,17 +68,31 @@ const char categories[NUM_OF_CATEGORIES][20] =
 };
 
 
-struct Scorecard{
-    std::array<int, NUM_OF_CATEGORIES> score{};
-    std::array<bool, NUM_OF_CATEGORIES> hasValue{false};
+struct Dice
+{
+    bool hold;
+    int value;
+};
+
+class Scorecard
+{
+    public:
+    std::vector<int> score;
+    std::vector<bool> hasValue;
+
+    public:
+    Scorecard() : score(NUM_OF_CATEGORIES), hasValue(NUM_OF_CATEGORIES, false) { }
+  
 };
 
 class Player{
     public:
     int player_index{};
     std::string name{};
-    Scorecard score_categories;
+    Scorecard scorecard{};
 };
+
+
 
 
 
@@ -93,7 +102,7 @@ int main()
     Player player1;
     // player1.player_index = 0;
     // player1.score_categories.score[0] = 15;
-    std::cout << "Player 1 ONES has value: " << player1.score_categories.hasValue[ONES] << "\n";
+    std::cout << "Player 1 ONES has value: " << player1.scorecard.hasValue[ONES] << "\n";
     std::cout << "Player 1 index: " << player1.player_index << "\n";
 
     // Gamestate Game;

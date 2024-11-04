@@ -35,7 +35,7 @@ struct Dice
     int value;
 };
 
-enum Combinations {
+enum Category {
     ONES,
     TWOS,
     THREES,
@@ -92,8 +92,8 @@ int main()
     std::vector<Dice> main_dice(5);
     Player player1;
     player1.player_index = 0;
-    player1.score_categories.score[0] = 15;
-    std::cout << player1.score_categories.score[0] << "\n";
+    // player1.score_categories.score[0] = 15;
+    std::cout << player1.score_categories.hasValue[ONES] << "\n";
 
     // Gamestate Game;
     int turns = 15;

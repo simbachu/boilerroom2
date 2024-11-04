@@ -107,9 +107,9 @@ int main()
     // player1.player_index = 0;
     // player1.score_categories.score[0] = 15;
     int dice_index = 0;
-    std::cout << "Player 1 ONES has value: " << player1.scorecard.hasValue[ONES] << "\n";
+    std::cout << "Player 1 ONES has value: " << player1.scorecard.hasValue.at(ONES) << "\n";
     std::cout << "Player 1 index: " << player1.player_index << "\n";
-    std::cout << "Dice index " << dice_index << " has value " << main_dice.value[dice_index] << "\n";
+    std::cout << "Dice index " << dice_index << " has value " << main_dice.value.at(dice_index) << "\n";
 
     // Gamestate Game;
     const int turns = NUM_OF_CATEGORIES;

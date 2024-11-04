@@ -1,12 +1,32 @@
 #include <iostream>
 #include <stdio.h>
 #include <vector>
+#include <array>
 // #include <stdlib.h>
 // #include <stdbool.h>
 #include <time.h>
 
 #define NUM_OF_DICE 5
 #define NUM_OF_CATEGORIES 15
+
+
+// struct Gamestate{
+//     int turn_number;
+//     std::vector<Scorecard> player;
+// };
+
+
+void clear_input_buffer();
+// int roll_a_dice();
+// void turn_the_dice(int roll_no, std::vector<Dice> &d);
+// void reset_dice_hold(Dice* d);
+// void input_dice_hold(Dice* d);
+// void dice_hold_update(Dice* d, bool dest);
+// void score_round();
+// void print_valid_categories(Gamestate g);
+// void initialize_game(Gamestate* g);
+// void select_category(Gamestate* g, Dice d);
+// int calculate_score(Dice d, int category);
 
 
 struct Dice
@@ -54,42 +74,26 @@ const char categories[NUM_OF_CATEGORIES][20] =
 
 
 struct Scorecard{
-    int score{};
-    bool hasValue{false};
+    std::array<int, NUM_OF_CATEGORIES> score{};
+    std::array<bool, NUM_OF_CATEGORIES> hasValue{false};
 };
 
 class Player{
     public:
     int player_index{};
     std::string name{};
-    std::vector<Scorecard> score[15];
+    Scorecard score_categories;
 };
 
 
-// struct Gamestate{
-//     int turn_number;
-//     std::vector<Scorecard> player;
-// };
-
-
-void clear_input_buffer();
-// int roll_a_dice();
-// void turn_the_dice(int roll_no, std::vector<Dice> &d);
-// void reset_dice_hold(Dice* d);
-// void input_dice_hold(Dice* d);
-// void dice_hold_update(Dice* d, bool dest);
-// void score_round();
-// void print_valid_categories(Gamestate g);
-// void initialize_game(Gamestate* g);
-// void select_category(Gamestate* g, Dice d);
-// int calculate_score(Dice d, int category);
 
 int main()
 {
     std::vector<Dice> main_dice(5);
     Player player1;
     player1.player_index = 0;
-    std::cout << player1.player_index << "\n";
+    player1.score_categories.score[0] = 15;
+    std::cout << player1.score_categories.score[0] << "\n";
 
     // Gamestate Game;
     int turns = 15;

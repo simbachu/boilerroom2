@@ -81,7 +81,42 @@ Active:    Player 2 - Sabina
 
 
 
+Active:    Player 2 - Sabina
+           0 rolls left
 
+          -     -     -     -     -
+        | 6 | | 6 | | 6 | | 3 | | 4 |
+          -     -     -     -     -
+
+
+
+
+--------------------------------------
+                  | P1  | P2  |
+--------------------------------------
+a)ONES            | 3   |     |
+b)TWOS            |     |     |
+c)THREES          | 12  |     |
+d)FOURS           |     |     |
+e)FIVES           |     | 15  |
+f)SIXES           |     |     |
+--------------------------------------
+  SUM:            | 15  | 15  |
+  BONUS:          |     |     |
+--------------------------------------
+g)ONE_PAIR        |     |     |
+h)TWO_PAIRS       |     |     |
+i)THREE_OF_A_KIND |     |     |
+j)FOUR_OF_A_KIND  |     |     |
+k)SMALL_STRAIGHT  |     |     |
+l)LARGE_STRAIGHT  |     |     |
+m)FULL_HOUSE      |     |     |
+n)CHANCE          |     |     |
+o)YAHTZEE         |     |     |
+--------------------------------------
+  SUM:            | 15  | 15  |
+
+  Please select a category (a-o)...
 
 
 

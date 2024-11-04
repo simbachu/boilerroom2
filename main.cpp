@@ -91,12 +91,14 @@ int main()
 {
     std::vector<Dice> main_dice(5);
     Player player1;
-    player1.player_index = 0;
+    // player1.player_index = 0;
     // player1.score_categories.score[0] = 15;
-    std::cout << player1.score_categories.hasValue[ONES] << "\n";
+    std::cout << "Player 1 ONES has value: " << player1.score_categories.hasValue[ONES] << "\n";
+    std::cout << "Player 1 index: " << player1.player_index << "\n";
 
     // Gamestate Game;
-    int turns = 15;
+    const int turns = NUM_OF_CATEGORIES;
+    int current_turn = 0;
     // initialize_game(&Game);
 
     // while ( Game.turn_number < turns )
